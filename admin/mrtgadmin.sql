@@ -41,7 +41,7 @@ CREATE TABLE `admin_accounts` (
 
 LOCK TABLES `admin_accounts` WRITE;
 /*!40000 ALTER TABLE `admin_accounts` DISABLE KEYS */;
-INSERT INTO `admin_accounts` VALUES (9,'admin','$2y$10$CXO/NzS5FtfK5VeNaXUbGeEGXqY/NxDMjQXroi2/wOxp9p6oBKqby',NULL,NULL,NULL,'super'),(10,'admin','$2y$10$vzOFXlcmjcOQMnzGivWKFe97hcRDqJzU45gkZPmjDp.Ov2JWpSCsu',NULL,NULL,NULL,'super');
+INSERT INTO `admin_accounts` VALUES (9,'admin','$2y$10$RnDwpen5c8.gtZLaxHEHDOKWY77t/20A4RRkWBsjlPuu7Wmy0HyBu',NULL,NULL,NULL,'super');
 /*!40000 ALTER TABLE `admin_accounts` ENABLE KEYS */;
 UNLOCK TABLES;
 
