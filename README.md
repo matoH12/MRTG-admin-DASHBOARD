@@ -101,3 +101,8 @@ Cron settings:
 ```
 
 ![Title page MRTG](manual/title-page.JPG)
+
+
+Administration:
+
+![Administration](manual/administration.JPG)
