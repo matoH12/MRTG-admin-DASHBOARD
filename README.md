@@ -62,7 +62,8 @@ Password: admin
 ```
 
 
-For authenticate you can use keaycloak sso system ove openid protocol. Configure credential in:
+For authenticate you can use keaycloak sso system over openid protocol. Configure credential in:
+
 authenticate.php
 
 ```sh
