@@ -2,13 +2,13 @@ MRTG php admin
 
 Install package debian/ubuntu:
 
-```
+```console
 apt install mrtg apache2 php php-mysql mariadb-server mariadb-client composser
 ```
 
 
 Install script for generate MRTG configuration from MySQL database:
-```
+```console
 mkdir /var/www/mrtg
 cp script /
 ```
@@ -23,7 +23,7 @@ Script contain:
 Web admin install:
 Copy data from git to web root directrory. 
 
-```
+```console
 cd /var/www/
 git clone https://github.com/matoH12/MRTG-admin-DASHBOARD.git .
 mysql -u root mrtgadmin < admin/mrtgadmin.sql
