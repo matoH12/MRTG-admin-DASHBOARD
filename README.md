@@ -33,9 +33,27 @@ mysql -u root mrtgadmin < admin/mrtgadmin.sql
 Setting password for MYSQL in file:
 1. index.php
 
+```sh
+function lokalita($id_budova)
+{
+$mysqli = new mysqli("localhost", "admin", 'yabFidth3', "mrtgadmin");
+...
+```
+
 2. admin/config/config.php
 
+```sh
+|--------------------------------------------------------------------------
+| DATABASE CONFIGURATION
+|--------------------------------------------------------------------------
+ */
 
+define('DB_HOST', "localhost");
+define('DB_USER', "admin");
+define('DB_PASSWORD', "yadFidth");
+define('DB_NAME', "mrtgadmin");
+
+```
 
 Default credential:
 User: admin
