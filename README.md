@@ -60,7 +60,7 @@ Default credential for local account:
 User: admin
 Password: admin
 ```
-
+![MYSQL config admin account](manual/mrtg-mysql-admin-account.JPG)
 
 For authenticate you can use keaycloak sso system over openid protocol. Configure credential in:
 
