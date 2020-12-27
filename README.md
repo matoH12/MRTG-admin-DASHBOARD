@@ -1,4 +1,7 @@
-MRTG php admin
+MRTG,switchmap php admin
+
+![MRTG admin structure](manual/mrtg-structure.png)
+
 
 Install package debian/ubuntu:
 
