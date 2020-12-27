@@ -87,3 +87,16 @@ This project use for authenticate this dictiornary:
 
 https://github.com/stevenmaguire/oauth2-keycloak
 
+
+
+Cron settings:
+```sh
+1 1 * * * /script/mysql.sh
+2 1 * * * /script/generujV2-cron.sh
+30 1 * * * php /var/www/html/local.sk/admin/script/scansnmp.php
+1 2 * * * php /script/switchmapfrommysql.php
+44 * * * * /var/www/html/switchmap.local.sk/ScanSwitch.pl
+49 * * * * /var/www/html/switchmap.local.sk/GetArp.pl
+01 3 * * * /var/www/html/switchmap.local.sk/SwitchMap.pl
+```
+
