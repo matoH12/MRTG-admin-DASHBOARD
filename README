@@ -1,29 +1,36 @@
 MRTG php admin
 
-Instalacia debian/ubuntu:
+Install package debian/ubuntu:
 
-apt install mrtg apache2 php php-mysql mariadb-server mariadb-client
+```
+apt install mrtg apache2 php php-mysql mariadb-server mariadb-client composser
+```
 
-Instalacia scriptu na generovanie configu MRTG:
 
+Install script for generate MRTG configuration from MySQL database:
+```
 mkdir /var/www/mrtg
 cp script /
+```
 
-Script sa sklada z:
+Script contain:
 
-1. generujV2-cron.sh – vytvorenie konfiguraku MRTG
+1. generujV2-cron.sh – Create MRTG configuration (/etc/mrtg.cfg)
 
-2. mysql.sh – stiahnutie IP SW z MYSQL DB
+2. mysql.sh – Select all switch IP address from MYSQL
 
 
-Web admin:
+Web admin install:
+Copy data from git to web root directrory. 
 
+```
 cd /var/www/
+git clone https://github.com/matoH12/MRTG-admin-DASHBOARD.git .
 mysql -u root mrtgadmin < admin/mrtgadmin.sql
+```
 
 
-
-Nastavenie pristupoveho hesla na DB:
+Setting password for MYSQL in file:
 1. index.php
 
 2. admin/config/config.php
