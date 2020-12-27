@@ -10,12 +10,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 {
     //Mass Insert Data. Keep "name" attribute in html form same as column name in mysql table.
     $data_to_store = array_filter($_POST);
+    $db = getDbInstance();
+    $db->where('swip',$data_to_store['swip']);
+    $kontrola = $db->getOne('swzoznam','swip');
+    if($kontrola){
+        $_SESSION['failure'] = "IP adresa existuje";
+        header('location: swzoznam.php');
+        exit();
+    }
+    $db = getDbInstance();
+    $db->where('swname',$data_to_store['swname']);
+    $kontrola2 = $db->getOne('swzoznam','swname');
+    if($kontrola2){
 
+        $_SESION['failure'] = "Nazov SW existuje";
+        header('location: swzoznam.php');
+        exit();
+
+    }
     //Insert timestamp
 //    $data_to_store['created_at'] = date('Y-m-d H:i:s');
     $db = getDbInstance();
     
     $last_id = $db->insert('swzoznam', $data_to_store);
+
+    $db = getDbInstance();
+    $udalost = 'Vytvorenie zariadenia:  ' . $data_to_store['swname'] . ' Nastavenie IP: ' . $data_to_store['swip'] . ' Nastavenie budova ID:  ' . $data_to_store['idbudova'] . ' Nastavenie lokalita ID:  ' . $data_to_store['idlokalita'];
+
+    $logs = array('user' => $_SESSION['user'] , 'udalost' => $udalost);
+    $db->insert('logs',$logs);
+
 
     if($last_id)
     {

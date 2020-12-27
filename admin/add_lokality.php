@@ -18,6 +18,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
     
     $last_id = $db->insert('lokalita', $data_to_store);
 
+    $db = getDbInstance();
+    $udalost = 'Vytvorenie lokality:  ' . $data_to_store['nazov'] . ' Nastavenie budova ID:  ' . $data_to_store['budovaid'] ;
+
+    $logs = array('user' => $_SESSION['user'] , 'udalost' => $udalost);
+    $db->insert('logs',$logs);
+
+
+
     if($last_id)
     {
     	$_SESSION['success'] = "Lokalita added successfully!";

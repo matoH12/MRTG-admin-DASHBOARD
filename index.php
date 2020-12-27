@@ -54,14 +54,13 @@ if (!$mysqli->set_charset("utf8")) {
 
 
 
-
-    $res3 = $mysqli->query("Select swname, swip FROM swzoznam where  idbudova = ".$row['id']." and idlokalita =".$row2['id']." order by swname");
+    $res3 = $mysqli->query("Select swname, swip, snmpuptime FROM swzoznam where  idbudova = ".$row['id']." and idlokalita =".$row2['id']." order by swname");
     while ($row3 = $res3->fetch_assoc())
 
     {
 
 
-	echo "<li><a href='mrtg/".$row3['swip'].".html'>".$row3['swname']."</a></li>";
+	echo "<li><a href='mrtg/".$row3['swip'].".html'>".$row3['swname']."</a>  UPTIME: ".$row3['snmpuptime']."</li>";
 
 
     }
@@ -172,24 +171,7 @@ $mysqli->close();
 </script>     
 <script type="application/javascript" src="https://api.ipify.org?format=jsonp&callback=getIP"></script>     
 <script type="text/javascript">
-    function toggle_nav() {
-                // hej viem da sa tam pouzit [] ale neslo mi to :D
-                var allowed_ips =       ["192.168.176.*", "192.168.177.*",
-                                        "192.168.178.*", "192.168.179.*",
-                                        "192.168.180.*", "192.168.181.*",
-                                        "192.168.182.*", "192.168.183.*",
-                                        "192.168.191.*", "192.168.6.*"];
-                for(var i = 0; i < allowed_ips.length; i++) {
-                        var found = userip.match(new RegExp(allowed_ips[i]));
-                        if(found != null) {
-                                return;
-                        }
-                }
-                if(found == null) {
-                        $('.restrict').remove();
-                }
-        }
-        document.onLoad = toggle_nav();   
+
 </script>                 
     </body>
 </html>

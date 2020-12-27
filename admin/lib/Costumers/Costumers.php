@@ -40,6 +40,8 @@ class Costumers
             'id' => 'ID',
             'swname' => 'Switch name',
             'swip' => 'Switch IP',
+            'snmpuptime' => 'Switch Uptime',
+
         ];
 
         return $ordering;
@@ -65,6 +67,15 @@ class Costumers
 
         return $ordering;
     }
+
+    public function setOrderingValueslogs()
+    {
+        $ordering = [
+            'id' => 'ID'];
+
+        return $ordering;
+    }
+
 
 
 }

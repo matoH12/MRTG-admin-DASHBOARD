@@ -132,6 +132,10 @@
                                 <li>
                                     <a href="admin_users.php"><i class="fa fa-users fa-fw"></i> Users</a>
                                 </li>
+
+                                <li>
+                                    <a href="logs.php"><i class="fa fa-users fa-fw"></i> Logs</a>
+                                </li>
                             </ul>
                         </div>
                         <!-- /.sidebar-collapse -->

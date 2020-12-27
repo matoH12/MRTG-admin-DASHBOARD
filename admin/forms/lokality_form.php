@@ -7,7 +7,7 @@
 
     <div class="form-group">
         <label>Budova </label>
-           <?php $select = array('id', 'nazov'); $opt_arr = $db->arraybuilder()->paginate('budova', "1", $select);
+           <?php $select = array('id', 'nazov'); $db->pageLimit = 200;  $opt_arr = $db->arraybuilder()->paginate('budova', "1", $select);
                             ?>
             <select name="budovaid" class="form-control selectpicker" required>
                 <option value=" " >Vyber budovy</option>

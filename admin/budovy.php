@@ -150,7 +150,7 @@ if ($order_by == 'Desc') {
 
     <!-- Pagination -->
     <div class="text-center">
-    <?php echo paginationLinks($page, $total_pages, 'customers.php'); ?>
+    <?php echo paginationLinks($page, $total_pages, 'budovy.php'); ?>
     </div>
     <!-- //Pagination -->
 </div>

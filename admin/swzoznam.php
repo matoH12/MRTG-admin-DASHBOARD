@@ -55,7 +55,7 @@ $db->join("budova u", "p.idbudova=u.id", "INNER");
 $db->join("lokalita b", "p.idlokalita=b.id", "LEFT");
 //$db->joinOrWhere("lokality u", "u.tenantID", 5);
 //$db->where ('p.id', 1);
-$rows = $db->get ("swzoznam p", null, "p.id, p.swname, p.swip, u.nazov as idbudova, b.nazov as idlokalita");
+$rows = $db->get ("swzoznam p", null, "p.id, p.swname, p.swip, p.snmpuptime, u.nazov as idbudova, b.nazov as idlokalita");
 
 
 
@@ -68,7 +68,7 @@ include BASE_PATH . '/includes/header.php';
 <div id="page-wrapper">
     <div class="row">
         <div class="col-lg-6">
-            <h1 class="page-header">Customers</h1>
+            <h1 class="page-header">Sietove zariadenia</h1>
         </div>
         <div class="col-lg-6">
             <div class="page-action-links text-right">
@@ -118,9 +118,10 @@ if ($order_by == 'Desc') {
                 <th width="25%">sw_name</th>
                 <th width="20%">sw_ip</th>
                 <th width="20%">Lokalita</th>
-                <th width="20%">Budova</th>
+                <th width="10%">Budova</th>
+                <th width="10%">Uptime</th>
 
-                <th width="10%">Actions</th>
+                <th width="20%">Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -131,10 +132,13 @@ if ($order_by == 'Desc') {
                 <td><?php echo htmlspecialchars($row['swip']); ?></td>
                 <td><?php echo htmlspecialchars($row['idlokalita']); ?></td>
                 <td><?php echo htmlspecialchars($row['idbudova']); ?></td>
+                <td><?php echo htmlspecialchars($row['snmpuptime']); ?></td>
 
                 <td>
-                    <a href="edit_swzoznam.php?customer_id=<?php echo $row['id']; ?>&operation=edit" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i></a>
-                    <a href="#" class="btn btn-danger delete_btn" data-toggle="modal" data-target="#confirm-delete-<?php echo $row['id']; ?>"><i class="glyphicon glyphicon-trash"></i></a>
+                    <a href="edit_swzoznam.php?customer_id=<?php echo $row['id']; ?>&operation=edit" class="btn btn-primary">EDIT <i class="glyphicon glyphicon-edit"></i></a>
+                    <a href="check_swsnmp.php?customer_id=<?php echo $row['id']; ?>" class="btn btn-primary">SNMP <i class="glyphicon glyphicon-check"></i></a>
+
+                    <a href="#" class="btn btn-danger delete_btn" data-toggle="modal" data-target="#confirm-delete-<?php echo $row['id']; ?>">DELETE <i class="glyphicon glyphicon-trash"></i></a>
                 </td>
             </tr>
             <!-- Delete Confirmation Modal -->

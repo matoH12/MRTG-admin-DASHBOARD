@@ -24,6 +24,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     $db->where('id',$customer_id);
     $stat = $db->update('budova', $data_to_update);
 
+    $db = getDbInstance();
+    $udalost = 'Editbudovy :  ' . $data_to_update['nazov'] ;
+
+    $logs = array('user' => $_SESSION['user'] , 'udalost' => $udalost);
+    $db->insert('logs',$logs);
+
+
     if($stat)
     {
         $_SESSION['success'] = "Customer updated successfully!";

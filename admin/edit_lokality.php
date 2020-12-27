@@ -24,6 +24,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     $db->where('id',$customer_id);
     $stat = $db->update('lokalita', $data_to_update);
 
+    $db = getDbInstance();
+    $udalost = 'Edit lokality:  ' . $data_to_update['nazov'] . ' Nastavenie budova ID:  ' . $data_to_update['budovaid'] ;
+
+    $logs = array('user' => $_SESSION['user'] , 'udalost' => $udalost);
+    $db->insert('logs',$logs);
+
+
     if($stat)
     {
         $_SESSION['success'] = "Lokalita updated successfully!";

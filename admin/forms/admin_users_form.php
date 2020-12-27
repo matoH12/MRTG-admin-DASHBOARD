@@ -2,7 +2,7 @@
     <!-- Form Name -->
     <legend>Add new admin user</legend>
     <!-- Text input-->
-    <div class="form-group">
+<!--    <div class="form-group">
         <label class="col-md-4 control-label">User name</label>
         <div class="col-md-4 inputGroupContainer">
             <div class="input-group">
@@ -10,9 +10,9 @@
                 <input  type="text" name="user_name" autocomplete="off" placeholder="user name" class="form-control" value="<?php echo ($edit) ? $admin_account['user_name'] : ''; ?>" autocomplete="off">
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- Text input-->
-    <div class="form-group">
+<!--     <div class="form-group">
         <label class="col-md-4 control-label" >Password</label>
         <div class="col-md-4 inputGroupContainer">
             <div class="input-group">
@@ -20,7 +20,7 @@
                 <input type="password" name="password" autocomplete="off" placeholder="Password " class="form-control" required="" autocomplete="off">
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- radio checks -->
     <div class="form-group">
         <label class="col-md-4 control-label">User type</label>

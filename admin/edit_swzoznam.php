@@ -18,12 +18,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
     //Get input data
     $data_to_update = filter_input_array(INPUT_POST);
-    
+
 //    $data_to_update['updated_at'] = date('Y-m-d H:i:s');
     $db = getDbInstance();
     $db->where('id',$customer_id);
     $stat = $db->update('swzoznam', $data_to_update);
+    $db = getDbInstance();
+    $udalost = 'Edit zariadenia:  ' . $data_to_update['swname'] . ' Nastavenie IP: ' . $data_to_update['swip'] . ' Nastavenie budova ID:  ' . $data_to_update['idbudova'] . ' Nastavenie lokalita ID:  ' . $data_to_update['idlokalita'];
 
+    $logs = array('user' => $_SESSION['user'] , 'udalost' => $udalost);
+    $db->insert('logs',$logs);
     if($stat)
     {
         $_SESSION['success'] = "Zariadenie updated successfully!";
@@ -49,7 +53,6 @@ if($edit)
 //$db->where("p.id", 6);
 //$db->where ('p.id', '1');
 //$db->joinOrWhere("swzoznam p", "p.id", $customer_id);
-//$db->where('p.id',$customer_id);
 //$customer = $db->get ("swzoznam p", null, "p.id, p.swname, p.swip, u.nazov as idbudova, b.nazov as idlokalita");
 
 $customer2 = $db->rawQuery('SELECT  p.id, p.swname, p.swip, u.id as budovaid, u.nazov as idbudova, b.id as lokalitaid, b.nazov as idlokalita FROM swzoznam p INNER JOIN budova u on p.idbudova=u.id INNER JOIN lokalita b on p.idlokalita=b.id WHERE  p.id = '.$customer_id);
@@ -66,6 +69,7 @@ $customer['lokalitaid'] = $customer2['0']['lokalitaid'];
 
 
 <?php
+//$db->where('p.id',$customer_id);
     include_once 'includes/header.php';
 ?>
 <div id="page-wrapper">
@@ -81,7 +85,7 @@ $customer['lokalitaid'] = $customer2['0']['lokalitaid'];
         
         <?php
             //Include the common form for add and edit  
-            require_once('./forms/swzoznam_form.php'); 
+            require_once('./forms/swzoznam_form_edit.php'); 
         ?>
     </form>
 </div>

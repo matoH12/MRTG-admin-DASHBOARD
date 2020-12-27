@@ -10,11 +10,13 @@
     </div> 
 
 
+
+
     <div class="form-group">
         <label>Budova </label>
-           <?php $select = array('id', 'nazov'); $opt_arr = $db->arraybuilder()->paginate('budova', "1", $select);
+           <?php $select = array('id', 'nazov'); $db->pageLimit = 2000; $opt_arr = $db->arraybuilder()->paginate('budova', "1", $select);
                             ?>
-            <select name="idbudova" class="form-control selectpicker" required>
+            <select id="idbudova" name="idbudova" class="form-control selectpicker" required>
                 <option value=" " >Vyber budovy</option>
                 <?php
                 foreach ($opt_arr as $opt) {
@@ -32,41 +34,46 @@
             </select>
     </div>
 
+<div id="catalog"></div>  
 
 
-    <div class="form-group">
-        <label>Lokalita </label>
-           <?php $select = array('id', 'nazov'); $opt_arr = $db->arraybuilder()->paginate('lokalita', "1", $select);
-                            ?>
-            <select name="idlokalita" class="form-control selectpicker" required>
-                <option value=" " >Vyber Lokality</option>
-                <?php
-                foreach ($opt_arr as $opt) {
-                    if ($edit && $opt['id'] == $customer['lokalitaid']) {
-                        $sel = "selected";
-                    } else {
-                        $sel = "";
-                    }
 
-                    echo '<option value="'.$opt['id'].'"'. $sel .'>' . $opt['nazov'] . '</option>';
-                }
 
-                ?>
-            </select>
-    </div>
 
 
     <div class="form-group text-center">
         <label></label>
         <button type="submit" class="btn btn-warning" >Save <span class="glyphicon glyphicon-send" ></span></button>
     </div>            
-
 <script type="text/javascript">
 
 function keyPressed(){
 var key = event.keyCode || event.charCode || event.which ;
 return key;
 }
+
+
+   function displayDivDemo(id, elementValue) {
+      document.getElementById(id).style.display = elementValue.value !== 0 ? 'block' : 'none';
+   }
+
+
+$('#idbudova').on('change', function() {
+           var option = this.value;
+                   $.ajax({
+                    type: "POST",
+                    url: "getzoznamlokalit.php",
+                    data: {
+                            'idbudova': option
+                    },
+                    success: function (data) {
+                                  $('#catalog').html(data);
+
+                        }
+                    });
+});
+
+
 
 </script>
 

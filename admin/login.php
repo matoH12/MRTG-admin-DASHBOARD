@@ -88,6 +88,10 @@ include BASE_PATH.'/includes/header.php';
 				<button type="submit" class="btn btn-success loginField">Login</button>
 			</div>
 		</div>
+
 	</form>
+
+                               <center> <button type="sso" class="btn btn-success loginField" onclick="location.href='https://mrtg.uvt.tuke.sk/admin/authenticate.php';">SSO LOGIN</button> </center>
+
 </div>
 <?php include BASE_PATH.'/includes/footer.php'; ?>

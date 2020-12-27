@@ -24,9 +24,24 @@ if ($del_id && $_SERVER['REQUEST_METHOD'] == 'POST')
     $db->where('id', $customer_id);
     if ($idbudova) {}
     else {
-    $status = $db->delete('lokalita');
+
+
+        $db = getDbInstance();
+        $db->where('id',$customer_id);
+        $lokalitaname= $db->getOne('lokalita');
+        $db = getDbInstance();
+        $udalost = 'Zmazanie Lokality:  ' . $lokalitaname['nazov'] . ' Lokalita ID: ' . $customer_id  ;
+
+        $logs = array('user' => $_SESSION['user'] , 'udalost' => $udalost);
+        $db->insert('logs',$logs);
+
+
+        $db = getDbInstance();
+
+        $db->where('id', $customer_id);
+        $status = $db->delete('lokalita');
     }
-    if ($status) 
+    if ($status)
     {
         $_SESSION['info'] = "Lokalita deleted successfully!";
 

@@ -14,10 +14,22 @@ if ($del_id && $_SERVER['REQUEST_METHOD'] == 'POST')
 //	}
     $customer_id = $del_id;
 
+
+
+    $db = getDbInstance();
+    $db->where('id',$customer_id);
+    $swname = $db->getOne('swzoznam');
+    $db = getDbInstance();
+    $udalost = 'Zmazanie zariadenia:  ' . $swname['swname'] . ' zariadenie ID: ' . $customer_id  ;
+
+    $logs = array('user' => $_SESSION['user'] , 'udalost' => $udalost);
+    $db->insert('logs',$logs);
+
     $db = getDbInstance();
     $db->where('id', $customer_id);
     $status = $db->delete('swzoznam');
-    
+
+
     if ($status) 
     {
         $_SESSION['info'] = "Switch deleted successfully!";
