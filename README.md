@@ -100,5 +100,4 @@ Cron settings:
 01 3 * * * /var/www/html/switchmap.local.sk/SwitchMap.pl
 ```
 
-
-[embed]manual/mrtg-admin-DOC.pdf[/embed]
+![Title page MRTG](manual/title-page.JPG)
