@@ -55,6 +55,31 @@ define('DB_NAME', "mrtgadmin");
 
 ```
 
-Default credential:
+Default credential for local account:
+```sh
 User: admin
 Password: admin
+```
+
+
+For authenticate you can use keaycloak sso system ove openid protocol. Configure credential in:
+authenticate.php
+
+```sh
+$provider = new Stevenmaguire\OAuth2\Client\Provider\Keycloak([
+    'authServerUrl'         => 'https://sso.local.sk/auth',
+    'realm'                 => 'realm1',
+    'clientId'              => 'mrtg.local.sk',
+    'clientSecret'          => '39d50b9d-22a4-49af-9049-587547247391',
+    'redirectUri'           => 'https://mrtg.local.sk/admin/authenticate.php',
+//    'encryptionAlgorithm'   => 'RS256',                             // optional
+//    'encryptionKeyPath'     => '../key.pem'                         // optional
+//    'encryptionKey'         => 'contents_of_key_or_certificate'     // optional
+]);
+
+```
+
+This project use for authenticate this dictiornary:
+
+https://github.com/stevenmaguire/oauth2-keycloak
+
