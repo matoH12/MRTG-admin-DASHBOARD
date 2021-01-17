@@ -7,7 +7,13 @@
     <div class="form-group">
         <label for="swip">Switch IP</label>
         <input type="text" name="swip" value="<?php echo htmlspecialchars($edit ? $customer['swip'] : '', ENT_QUOTES, 'UTF-8'); ?>" placeholder="Switch IP" class="form-control"  required="required" pattern="((^|\.)((25[0-5])|(2[0-4]\d)|(1\d\d)|([1-9]?\d))){4}$"  id="swip">
-    </div> 
+    </div>
+
+    <div class="form-group">
+        <label for="snmpcomunity">SNMP Comunity</label>
+        <input type="text" name="snmpcomunity" value="<?php echo htmlspecialchars($edit ? $customer['snmpcomunity'] : '', ENT_QUOTES, 'UTF-8'); ?>" placeholder="Switch snmp community" class="form-control"  required="required" id="snmpcomunity">
+    </div>
+
 
 
     <div class="form-group">
@@ -55,6 +61,7 @@
                 ?>
             </select>
     </div>
+
 
 
     <div class="form-group text-center">

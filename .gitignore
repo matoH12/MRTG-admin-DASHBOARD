@@ -1,0 +1,16 @@
+# Created by .ignore support plugin (hsz.mobi)
+### SugarCRM template
+## SugarCRM
+# Ignore custom .htaccess stuff.
+/.htaccess
+# Ignore the cache directory completely.
+# This will break the current behaviour. Which was often leading to
+# the misuse of the repository as backup replacement.
+# For development the cache directory can be safely ignored and
+# therefore it is ignored.
+/.idea
+
+### EiffelStudio template
+# The compilation directory
+EIFGENs
+

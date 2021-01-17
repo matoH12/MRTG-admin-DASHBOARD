@@ -15,9 +15,13 @@ $db = getDbInstance();
         $ip = $db->getValue ("swzoznam", "swip", null);
 
         foreach ($ip as $ips){
+            $db = getDbInstance();
+            $db->where('swip', $ips);
+
+            $comunnity = $db->getValue("swzoznam","snmpcomunity");
 
         $sysUpTime = "1.3.6.1.2.1.1.3.0";
-        $oo3 = clean_output(snmpget($ips,"public",$sysUpTime));
+        $oo3 = clean_output(snmpget($ips,$comunnity,$sysUpTime));
 
         if($oo3) {
 		  $stat = 'TRUE';

@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.7deb1~bpo10+1
+-- version 5.0.4deb1~bpo10+1
 -- https://www.phpmyadmin.net/
 --
 -- Hostiteľ: localhost:3306
--- Čas generovania: Ne 27.Dec 2020, 11:51
+-- Čas generovania: Ne 17.Jan 2021, 12:16
 -- Verzia serveru: 10.3.27-MariaDB-0+deb10u1-log
 -- Verzia PHP: 7.3.19-1~deb10u1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -28,16 +27,14 @@ SET time_zone = "+00:00";
 -- Štruktúra tabuľky pre tabuľku `admin_accounts`
 --
 
-CREATE TABLE IF NOT EXISTS `admin_accounts` (
-  `id` int(25) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `admin_accounts` (
+  `id` int(25) NOT NULL,
   `user_name` varchar(250) NOT NULL,
   `password` varchar(255) NOT NULL,
   `series_id` varchar(60) DEFAULT NULL,
   `remember_token` varchar(255) DEFAULT NULL,
   `expires` datetime DEFAULT NULL,
-  `admin_type` varchar(10) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `user_name` (`user_name`)
+  `admin_type` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -46,10 +43,9 @@ CREATE TABLE IF NOT EXISTS `admin_accounts` (
 -- Štruktúra tabuľky pre tabuľku `budova`
 --
 
-CREATE TABLE IF NOT EXISTS `budova` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nazov` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
+CREATE TABLE `budova` (
+  `id` int(11) NOT NULL,
+  `nazov` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -58,8 +54,8 @@ CREATE TABLE IF NOT EXISTS `budova` (
 -- Štruktúra tabuľky pre tabuľku `customers`
 --
 
-CREATE TABLE IF NOT EXISTS `customers` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `customers` (
+  `id` int(10) NOT NULL,
   `f_name` varchar(25) NOT NULL,
   `l_name` varchar(25) NOT NULL,
   `gender` varchar(6) DEFAULT NULL,
@@ -70,8 +66,7 @@ CREATE TABLE IF NOT EXISTS `customers` (
   `email` varchar(50) DEFAULT NULL,
   `date_of_birth` date DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -80,12 +75,11 @@ CREATE TABLE IF NOT EXISTS `customers` (
 -- Štruktúra tabuľky pre tabuľku `logs`
 --
 
-CREATE TABLE IF NOT EXISTS `logs` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `logs` (
+  `id` int(11) NOT NULL,
   `user` varchar(255) NOT NULL,
   `udalost` varchar(255) NOT NULL,
-  `datum` timestamp NOT NULL DEFAULT current_timestamp(),
-  PRIMARY KEY (`id`)
+  `datum` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -94,11 +88,10 @@ CREATE TABLE IF NOT EXISTS `logs` (
 -- Štruktúra tabuľky pre tabuľku `lokalita`
 --
 
-CREATE TABLE IF NOT EXISTS `lokalita` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `lokalita` (
+  `id` int(11) NOT NULL,
   `nazov` varchar(255) NOT NULL,
-  `budovaid` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
+  `budovaid` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -107,18 +100,99 @@ CREATE TABLE IF NOT EXISTS `lokalita` (
 -- Štruktúra tabuľky pre tabuľku `swzoznam`
 --
 
-CREATE TABLE IF NOT EXISTS `swzoznam` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `swzoznam` (
+  `id` int(11) NOT NULL,
   `swname` varchar(255) NOT NULL,
   `swip` varchar(255) NOT NULL,
   `idlokalita` int(11) NOT NULL,
   `idbudova` int(11) NOT NULL,
   `snmpuptime` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `idlokalita` (`idlokalita`),
-  KEY `idlokalita_2` (`idlokalita`),
-  KEY `idlokalita_3` (`idlokalita`)
+  `snmpcomunity` varchar(255) NOT NULL DEFAULT 'public'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Kľúče pre exportované tabuľky
+--
+
+--
+-- Indexy pre tabuľku `admin_accounts`
+--
+ALTER TABLE `admin_accounts`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `user_name` (`user_name`);
+
+--
+-- Indexy pre tabuľku `budova`
+--
+ALTER TABLE `budova`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexy pre tabuľku `customers`
+--
+ALTER TABLE `customers`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexy pre tabuľku `logs`
+--
+ALTER TABLE `logs`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexy pre tabuľku `lokalita`
+--
+ALTER TABLE `lokalita`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexy pre tabuľku `swzoznam`
+--
+ALTER TABLE `swzoznam`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idlokalita` (`idlokalita`),
+  ADD KEY `idlokalita_2` (`idlokalita`),
+  ADD KEY `idlokalita_3` (`idlokalita`);
+
+--
+-- AUTO_INCREMENT pre exportované tabuľky
+--
+
+--
+-- AUTO_INCREMENT pre tabuľku `admin_accounts`
+--
+ALTER TABLE `admin_accounts`
+  MODIFY `id` int(25) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pre tabuľku `budova`
+--
+ALTER TABLE `budova`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pre tabuľku `customers`
+--
+ALTER TABLE `customers`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pre tabuľku `logs`
+--
+ALTER TABLE `logs`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pre tabuľku `lokalita`
+--
+ALTER TABLE `lokalita`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pre tabuľku `swzoznam`
+--
+ALTER TABLE `swzoznam`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

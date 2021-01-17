@@ -88,12 +88,24 @@ $mysqli->close();
         <title>Mrtg                           
         </title>                                   
         <meta charset="utf-8" />                                   
-        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />                                   
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <meta name="description" content="MRTG web admin">
+        <meta name="keywords" content="HTML, CSS, JavaScript, mrtg, switchmap">
+        <meta name="author" content="Martin Hasin">
+
+
         <link rel="stylesheet" href="assets/css/main.css" />                                           
         <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico?" />                                           
         <noscript>                                      
             <link rel="stylesheet" href="assets/css/noscript.css" />                          
-        </noscript>                   
+        </noscript>
+        <!-- Including jQuery is required. -->
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+        <!-- Including our scripting file. -->
+        <script type="text/javascript" src="scripts.js"></script>
+        <!-- Including CSS file. -->
+        <link rel="stylesheet" type="text/css" href="style.css">
+
     </head>                   
     <body class="is-preload">       
 <script type="text/javascript">
@@ -123,15 +135,29 @@ $mysqli->close();
             <div id="main">                                                                           
                 <!-- Introduction -->                                                                                  
                 <section id="intro" class="main">                                                                                                   
-                    <div class="content">                                                                                                                   
+                    <div class="content">
                         <header class="major">                                            <h2>Lokality</h2>                                                                                                                   
-                        </header>                                                                                                                       
+                        </header>
+                        <b>Hľadanie. Zadaj názov SW alebo IP adresu</b>
+
+                        <!-- Search box. -->
+                        <input type="text" id="search" placeholder="Search" />
+                        <br>
+
+                        <!-- Suggestions will be displayed in below div. -->
+                        <div id="display"></div>
+
+                        <br><br>
+                        <b>Všetky lokality</b>
 
 
 
 
 
-            <?php lokalita( 1) ?>
+
+
+
+                        <?php lokalita( 1) ?>
 
 
 
@@ -171,7 +197,24 @@ $mysqli->close();
 </script>     
 <script type="application/javascript" src="https://api.ipify.org?format=jsonp&callback=getIP"></script>     
 <script type="text/javascript">
-
+    function toggle_nav() {
+                // hej viem da sa tam pouzit [] ale neslo mi to :D
+                var allowed_ips =       ["147.232.176.*", "147.232.177.*",
+                                        "147.232.178.*", "147.232.179.*",
+                                        "147.232.180.*", "147.232.181.*",
+                                        "147.232.182.*", "147.232.183.*",
+                                        "147.232.191.*", "192.168.6.*"];
+                for(var i = 0; i < allowed_ips.length; i++) {
+                        var found = userip.match(new RegExp(allowed_ips[i]));
+                        if(found != null) {
+                                return;
+                        }
+                }
+                if(found == null) {
+                        $('.restrict').remove();
+                }
+        }
+        document.onLoad = toggle_nav();   
 </script>                 
     </body>
 </html>

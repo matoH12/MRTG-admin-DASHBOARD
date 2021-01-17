@@ -6,7 +6,11 @@
 	foreach ($ip as $ips){
 
 	$sysUpTime = "1.3.6.1.2.1.1.3.0";
-	$oo3 = clean_output(snmpget($ips,"public",$sysUpTime));
+	$db->where('swip', $ips);
+
+	$comunnity = $db->getValue("swzoznam","snmpcomunity");
+
+	$oo3 = clean_output(snmpget($ips,$comunnity,$sysUpTime));
 
 	if($oo3) {
 

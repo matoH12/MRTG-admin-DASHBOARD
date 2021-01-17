@@ -13,15 +13,7 @@ apt install mrtg apache2 php php-mysql mariadb-server mariadb-client composser
 Install script for generate MRTG configuration from MySQL database:
 ```sh
 mkdir /var/www/mrtg
-cp script /
 ```
-
-Script contain:
-
-1. generujV2-cron.sh – Create MRTG configuration (/etc/mrtg.cfg)
-
-2. mysql.sh – Select all switch IP address from MYSQL
-
 
 Web admin install:
 Copy data from git to web root directrory. 
@@ -91,8 +83,9 @@ https://github.com/stevenmaguire/oauth2-keycloak
 
 Cron settings:
 ```sh
-1 1 * * * /script/mysql.sh
-2 1 * * * /script/generujV2-cron.sh
+30 0 * * * php /var/www/html/mrtg.uvt.tuke.sk/admin/script/mrtggen.php
+30 1 * * * php /var/www/html/mrtg.uvt.tuke.sk/admin/script/scansnmp.php
+
 30 1 * * * php /var/www/html/local.sk/admin/script/scansnmp.php
 1 2 * * * php /script/switchmapfrommysql.php
 44 * * * * /var/www/html/switchmap.local.sk/ScanSwitch.pl

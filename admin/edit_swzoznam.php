@@ -55,7 +55,7 @@ if($edit)
 //$db->joinOrWhere("swzoznam p", "p.id", $customer_id);
 //$customer = $db->get ("swzoznam p", null, "p.id, p.swname, p.swip, u.nazov as idbudova, b.nazov as idlokalita");
 
-$customer2 = $db->rawQuery('SELECT  p.id, p.swname, p.swip, u.id as budovaid, u.nazov as idbudova, b.id as lokalitaid, b.nazov as idlokalita FROM swzoznam p INNER JOIN budova u on p.idbudova=u.id INNER JOIN lokalita b on p.idlokalita=b.id WHERE  p.id = '.$customer_id);
+$customer2 = $db->rawQuery('SELECT  p.id, p.swname, p.swip, u.id as budovaid, u.nazov as idbudova, b.id as lokalitaid, b.nazov as idlokalita, p.snmpcomunity as snmpcomunity FROM swzoznam p INNER JOIN budova u on p.idbudova=u.id INNER JOIN lokalita b on p.idlokalita=b.id WHERE  p.id = '.$customer_id);
 $customer['id'] = $customer2['0']['id'];
 $customer['swname'] = $customer2['0']['swname'];
 $customer['swip'] = $customer2['0']['swip'];
@@ -63,7 +63,7 @@ $customer['idbudova'] = $customer2['0']['idbudova'];
 $customer['idlokalita'] = $customer2['0']['idlokalita'];
 $customer['budovaid'] = $customer2['0']['budovaid'];
 $customer['lokalitaid'] = $customer2['0']['lokalitaid'];
-
+$customer['snmpcomunity'] = $customer2['0']['snmpcomunity'];
 }
 ?>
 

@@ -55,7 +55,7 @@ $db->join("budova u", "p.idbudova=u.id", "INNER");
 $db->join("lokalita b", "p.idlokalita=b.id", "LEFT");
 //$db->joinOrWhere("lokality u", "u.tenantID", 5);
 //$db->where ('p.id', 1);
-$rows = $db->get ("swzoznam p", null, "p.id, p.swname, p.swip, p.snmpuptime, u.nazov as idbudova, b.nazov as idlokalita");
+$rows = $db->get ("swzoznam p", null, "p.id, p.swname, p.swip, p.snmpuptime, p.snmpcomunity, u.nazov as idbudova, b.nazov as idlokalita");
 
 
 
@@ -115,10 +115,11 @@ if ($order_by == 'Desc') {
         <thead>
             <tr>
                 <th width="5%">ID</th>
-                <th width="25%">sw_name</th>
-                <th width="20%">sw_ip</th>
+                <th width="20%">sw_name</th>
+                <th width="15%">sw_ip</th>
                 <th width="20%">Lokalita</th>
                 <th width="10%">Budova</th>
+                <th width="10%">SNMP community</th>
                 <th width="10%">Uptime</th>
 
                 <th width="20%">Actions</th>
@@ -132,6 +133,7 @@ if ($order_by == 'Desc') {
                 <td><?php echo htmlspecialchars($row['swip']); ?></td>
                 <td><?php echo htmlspecialchars($row['idlokalita']); ?></td>
                 <td><?php echo htmlspecialchars($row['idbudova']); ?></td>
+                <td><?php echo htmlspecialchars($row['snmpcomunity']); ?></td>
                 <td><?php echo htmlspecialchars($row['snmpuptime']); ?></td>
 
                 <td>
