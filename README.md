@@ -83,8 +83,8 @@ https://github.com/stevenmaguire/oauth2-keycloak
 
 Cron settings:
 ```sh
-30 0 * * * php /var/www/html/mrtg.uvt.tuke.sk/admin/script/mrtggen.php
-30 1 * * * php /var/www/html/mrtg.uvt.tuke.sk/admin/script/scansnmp.php
+30 0 * * * php /var/www/html/mrtg.local.sk/admin/script/mrtggen.php
+30 1 * * * php /var/www/html/mrtg.local.sk/admin/script/scansnmp.php
 
 30 1 * * * php /var/www/html/local.sk/admin/script/scansnmp.php
 1 2 * * * php /script/switchmapfrommysql.php
